@@ -23,5 +23,7 @@ Route.get('posts/create', 'PostsController.create')
 Route.post('posts', 'PostsController.store')
 Route.get('posts/:id', 'PostsController.show')
 Route.get('/delete/:id', 'PostsController.delete');
+Route.get('/edit/:id', 'PostsController.edit');
+Route.post('/update', 'PostsController.update');
 Route.on('about').render('about')
 Route.on('contact').render('contact')

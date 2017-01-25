@@ -47,7 +47,24 @@ class PostController {
     const post = yield Post.find(request.param('id'));
     yield post.delete();
     response.redirect('/');
-}
+  }
+
+  * edit (request, response) {
+    const id = request.param('id');
+    const post = yield Post.find(id);
+    yield response.sendView('editPost', {post: post});
+  }
+//possibly change var to const for postData
+  * update (request, response) {
+    var postData = request.only('id', 'title', 'content');
+    const id = postData.id;
+    const post = yield Post.find(id);
+    // Update and save post
+    post.fill(postData);
+    yield post.save();
+    // Go home
+    response.redirect('/');
+  }
 
 }
 

@@ -1,0 +1,34 @@
+{% extends 'master' %}
+
+{% block content %}
+
+{% if old('errors') %}
+<div class="alert alert-danger">
+  {% for error in old('errors') %}
+    <li> {{ error.message }} </li>
+  {% endfor %}
+</div>
+{% endif %}
+
+<h2>{{post.title}}</h2>
+{{ form.open({action: 'PostsController.update'}) }}
+
+  {{ csrfField }}
+
+    <fieldset class="form-group">
+          {{ form.label('Title') }}
+          {{ form.text('title', post.title) }}
+    </fieldset>
+
+      <fieldset class="form-group">
+          {{ form.label('Description') }}
+          {{ form.textarea('content', post.content) }}
+      </fieldset>
+
+      {{form.hidden('id', post.id)}}
+
+      {{ form.submit('Create', 'create', { class: 'btn btn-primary btn-block' }) }}
+
+{{ form.close() }}
+
+{% endblock %}
