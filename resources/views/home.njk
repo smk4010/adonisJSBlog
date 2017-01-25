@@ -6,7 +6,11 @@
     Below is the list of all the awesome posts created by all of us. You can also
     contribute by clicking the below button.
   </p>
+  {% if not currentUser %}
+  <a href="/login" class="btn btn-info"> Please login to post an article >></a>
+  {% else %}
   <a href="posts/create" class="btn btn-success btn-block"> Create New Post </a>
+  {% endif %}
   <hr>
 </div>
   <div class="posts-wrapper">
