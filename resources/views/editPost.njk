@@ -17,17 +17,17 @@
 
     <fieldset class="form-group">
           {{ form.label('Title') }}
-          {{ form.text('title', post.title) }}
+          {{ form.text('title', post.title, { class: 'form-control' }) }}
     </fieldset>
 
       <fieldset class="form-group">
           {{ form.label('Description') }}
-          {{ form.textarea('content', post.content) }}
+          {{ form.textarea('content', post.content, { class: 'form-control' }) }}
       </fieldset>
 
       {{form.hidden('id', post.id)}}
 
-      {{ form.submit('Create', 'create', { class: 'btn btn-primary btn-block' }) }}
+      {{ form.submit('Update', 'create', { class: 'btn btn-primary btn-block' }) }}
 
 {{ form.close() }}
 
