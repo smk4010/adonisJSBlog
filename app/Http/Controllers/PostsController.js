@@ -59,6 +59,22 @@ class PostController {
     var postData = request.only('id', 'title', 'content');
     const id = postData.id;
     const post = yield Post.find(id);
+    //Validation check
+    const rules = {
+      title: 'required',
+      content: 'required'
+    }
+
+    const validation = yield Validator.validate(postData, rules)
+
+    if (validation.fails()) {
+      yield request
+          .withOnly('title', 'content')
+          .andWith({ errors: validation.messages() })
+          .flash()
+      response.redirect('back')
+      return
+    }
     // Update and save post
     post.fill(postData);
     yield post.save();
