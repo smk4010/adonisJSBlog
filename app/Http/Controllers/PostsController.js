@@ -43,6 +43,12 @@ class PostController {
     yield response.sendView('showPost', { post: post.toJSON() })
   }
 
+  * delete (request, response) {
+    const post = yield Post.find(request.param('id'));
+    yield post.delete();
+    response.redirect('/');
+}
+
 }
 
 module.exports = PostController
