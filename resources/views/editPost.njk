@@ -1,7 +1,9 @@
 {% extends 'master' %}
 
 {% block content %}
-
+{% if not currentUser %}
+  <a href="/login" class="btn btn-info"> You need to login to edit an article >></a>
+{% else %}
 {% if old('errors') %}
 <div class="alert alert-danger">
   {% for error in old('errors') %}
@@ -30,5 +32,5 @@
       {{ form.submit('Update', 'create', { class: 'btn btn-primary btn-block' }) }}
 
 {{ form.close() }}
-
+{% endif %}
 {% endblock %}

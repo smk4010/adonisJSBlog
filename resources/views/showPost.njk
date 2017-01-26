@@ -9,7 +9,10 @@
     <h2>{{ post.title }}</h2>
     <p>{{ post.content }}</p>
     <hr>
+{% if not currentUser %}
+{% else %}
     <a href="/edit/{{post.id}}" class="btn btn-warning">Edit Post</a>
     <a href="/delete/{{post.id}}" class="btn btn-danger">Delete Post</a>
+{% endif %}
   </div>
 {% endblock %}
